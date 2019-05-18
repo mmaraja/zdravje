@@ -1,0 +1,7 @@
+head,
+
+.okvir {
+    border: 1px solid;
+    border-color: coral;
+    min-height: 100px !important;
+}
