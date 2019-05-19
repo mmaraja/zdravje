@@ -11,6 +11,7 @@
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
   <script src="knjiznice/js/koda.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -37,9 +38,17 @@
     </div>
   </nav>
   <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
-
+  
+<div class="container"><h2><span class="fa fa-heartbeat" aria-hidden="true"></span>Zdravje<small><br>Vsak dan šteje</small><a href="index.html"></a></h2></div>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#panel-0" data-toggle="tab"><span class="fa fa-child" aria-hidden="true"></span> Pacient</a></li>
+    <li><a href="#panel-3" data-toggle="tab"><span class="fa fa-medkit" aria-hidden="true"></span> Zdravniki</a></li>
+		<li><a href="#panel-4" data-toggle="tab" id="maptab"><span class="fa fa-hospital-o" aria-hidden="true"></span> Drugi viri</a></li>
+		<li><a href="#panel-5" data-toggle="tab" id="maptab"><span class="fa fa-line-chart" aria-hidden="true"></span> Graf</a></li>			
+						</ul>
+  
   <!-- ZAČETEK: Vsebina aplikacije -->
-   <div class="col-lg-10">
+   <div style="margin-top: 10px; margin-left: 80px"class="col-lg-10"  id="panel-0">
               <div class="panel panel-default okvir">
                  <div class="panel-heading">
                      <div class="row">
@@ -100,7 +109,7 @@
                            
          </div>
        
-          <div class="col-lg-5">
+          <div style="margin-left: 80px" class="col-lg-5">
             <div class="panel panel-default okvir">
         
              <div class="panel-heading">
@@ -175,12 +184,104 @@
             <span id="meritveVitalSpor"></span>
 
           </div>
-  <span id="sporociGenerirano"></span>
+            <span id="sporociGenerirano"></span>
 
         </div>
-      </div>
-      </div>
-    </div>
+        <div class="col-lg-5">
+
+        <div class="panel panel-default okvir">
+
+          <div class="panel-heading">
+            <div class="row">
+
+              <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8">
+                <h4>Podatki o pacientu</h4>
+              </div>
+
+              <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+                <select id="podatkiOpacientu" class="form-control">
+                  <option value=""></option>
+                  <option value="83e2eff9-f8d2-4e03-be19-0a745294f3d1">Marek Nošel</option>
+                  <option value="07f73f84-18e4-4c3a-a8c8-ea9ce1055346">Ivan Sprina</option>
+                  <option value="1dd2a3da-432b-40cf-93d2-ef05e479aeac">Nataša Oprič</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <span class="label label-default">EHR ID</span>
+                <div class="form-group">
+                  <input id="EHRid" type="text" class="form-control" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
+                </div>
+                <button onclick="analizirajMeritve()" class="btn btn-primary" type="button">Preveri vitalne znake</button>
+              
+              </div>
+            </div>
+
+            <hr>
+           
+
+            <div class="row" style="margin-top:15px;">
+              <div class="col-lg-12">
+                <ul class="nav nav-tabs">
+                  <li id="0tab" class="active"><a data-toggle="tab" href="#vitalniTab"><i class="fa fa-medkit"></i> Meritve</a></li>
+                  
+
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="tab-content">
+                  <div id="vitab" class="tab-pane fade active in">
+                    <br><h5>Preverjanje vitalnih znakov</h5>
+                    <hr>
+                    <div class="row">
+                     <div class="col-lg-12">
+                        
+                          <h7 style="margin-left: 13px">Telesna teža:<small id="rezzo"></small></h7>
+                          
+                        </div>
+                      </div>
+                    <div class="row">
+                     <div class="col-lg-12">
+                        
+                          <h7 style="margin-left: 13px">Temperatura:<small id="rezultat"></small></h7>
+                          <h7 id="obavestenjetemp"></h7>
+                        </div>
+                      </div>
+                      
+                    </div>
+                   <div class="row">
+                      <div class="col-lg-12">
+                       
+                          <h7 style="margin-left: 13px">Sistolični tlak:<small id="rez"></small></h7>
+                          <h7 id="obavestenjesys"></h7>
+                      </div>
+                   </div> 
+                      <div class="row">
+                     <div class="col-lg-12">
+                          <h7 style="margin-left: 13px">Diastolični tlak:<small id="rez2"></small></h7>
+                       
+                          <h7 id="obavestenjedi"></h7>  
+                           </div>
+                        </div>
+                       </div>
+                      </div>
+                   
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+     </div>
+      
+  
 
 
   <!-- KONEC: Vsebina aplikacije -->

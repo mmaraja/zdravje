@@ -143,7 +143,10 @@ function novEHR() {
 		            firstNames: ime,
 		            lastNames: priimek,
 		            dateOfBirth: datumRojstva,
-		            partyAdditionalInfo: [{key: "ehrId", value: ehrId}]
+		            partyAdditionalInfo: [{key: "ehrId", value: ehrId},  {
+                        key: "ishrana",
+                        value: ishrana
+                    },]
 		        };
 		        $.ajax({
 		            url: baseUrl + "/demographics/party",
@@ -185,7 +188,7 @@ function dodajMeritve() {
 	var diTlak= $("#dodajDiTlak").val();
  
  if (!ehrId || ehrId.trim().length == 0) {
-		$("#dodajMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo " +
+		$("#meritveVitalSpor").html("<span class='obvestilo " +
       "label label-warning fade-in'>Prosim vnesite zahtevane podatke!</span>");
 	} else {
 		var podatki = {
@@ -230,6 +233,208 @@ function dodajMeritve() {
 	}
 }
 
+var pacientIme=""; var pacientPriimek=""; var pacientDR=""; var pacientIshrana=""; var pacientDUra=""; var pacientTemp=0; var pacientTeza=0; var pacientSiTlak=0; var pacientDiTlak=0;
+var pacientdodatno="";
+
+function analizirajMeritve() {
+  
+    var pacient1=$("#pacientIme").val();
+    var pacient2=$("#pacientPriimek").val();
+    var ehrid = $("#EHRid").val();
+    var podatek=1;
+     if (!ehrid) {
+        $("#obvestiloanaliza").html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Prosimo vnesite EHR ID pacienta.</div>");
+        podatek=-1;
+     } else {
+        $.ajax({
+            url: baseUrl + "/demographics/ehr/" + ehrid + "/party",
+            type: 'GET',
+            headers: {
+                 "Authorization": getAuthorization()
+            },
+
+            success: function(data) {
+
+                var party = data.party;
+                pacientIme = party.firstNames;
+                pacientPriimek = party.lastNames;
+                pacientDR = party.dateOfBirth;
+                pacientDUra=party.time;
+                pacientdodatno=party.partyAdditionalInfo;
+                $.ajax({
+                    url: baseUrl + "/view/" + ehrid + "/" + "body_temperature",
+                    type: 'GET',
+                    headers: {
+                         "Authorization": getAuthorization()
+                    },
+                    success: function(res) {
+                       
+                        if (res.length > 0) {
+                         
+  				             pacientDUra = res[0].time;
+  				             pacientTemp = res[0].temperature; 
+                           var results= "<tr><td width='80%' >"  + pacientTemp +
+                            " " + res[0].unit + "</td></tr>";
+  				     
+                           $("#rezultat").append(results);
+                        } else {
+                            alert("NI PODATKA O TEMPERATURI");
+                        }
+                         analizaTemp(pacientTemp);
+                    },
+                   
+                });
+
+                $.ajax({
+                    url: baseUrl + "/view/" + ehrid + "/" + "weight",
+                    type: 'GET',
+                    headers: {
+                        "Authorization": getAuthorization()
+                    },
+                    success: function(res) {
+                     
+                        if (res.length > 0) {
+                            pacientTeza = res[0].weight;
+                           var rezz= "<tr><td width='80%' >"  + pacientTeza +
+                            " " + res[0].unit + "</td></tr>";
+                            $("#rezzo").append(rezz);
+                        }
+                        else {
+                            alert("NI PODATKA O TEŽI.");
+                        }
+                    },
+                   
+                });
+                $.ajax({
+                    url: baseUrl + "/view/" + ehrid + "/" + "blood_pressure",
+                    type: 'GET',
+                    headers: {
+                        "Authorization": getAuthorization()
+                    },
+                    success: function(res) {
+                     
+                        if (res.length > 0) {
+                            pacientSiTlak = res[0].systolic;
+                            pacientDiTlak = res[0].diastolic;
+                            var nesto= "<tr><td width='80%' >"  + pacientSiTlak +
+                            " " + res[0].unit + "</td></tr>";
+  				           
+                           $("#rez").append(nesto);
+                         
+                        }
+                        else {
+                            alert("NI PODATKA O TLAKU.");
+
+                        }
+                       analizaSist(pacientSiTlak);
+
+                    },
+                   
+                });
+                 $.ajax({
+                    url: baseUrl + "/view/" + ehrid + "/" + "blood_pressure",
+                    type: 'GET',
+                    headers: {
+                        "Authorization": getAuthorization()
+                    },
+                    success: function(res) {
+                        if (res.length > 0) {
+                            pacientSiTlak = res[0].systolic;
+                            pacientDiTlak = res[0].diastolic;
+                            
+  				            var ditlakk= "<tr><td width='80%' >"  + pacientDiTlak +
+                            " " + res[0].unit + "</td></tr>";
+                           $("#rez2").append(ditlakk);
+                       
+                        }
+                        else {
+                            alert("NI PODATKA O TLAKU.");
+                        }
+                       analizaDiast(pacientDiTlak);
+
+                    },
+                   
+                });
+            },
+            
+        });
+
+      
+
+    }
+}
+function ishranaPacienta(hrana) {
+ 
+        switch (hrana) {
+            case 'meso':
+                $("#hranainfo").html("<b>Ishrana:</b> Mesojedec");
+                $("#hranainfo").css("color", "#5cb85c");
+                $("#hranaINFO").css("display", "none");
+                break;
+            case 'vegeterijan':
+                $("#hranainfo").html("<b>Ishrana:</b> Vegeterijanec");
+                $("#hranainfo").css("color", "#d9534f");
+                $("#hranaINFO").css("display", "block");
+               
+                break;
+            case 'vegan':
+                $("#hranainfo").html("<b>Ishrana:</b> Vegan");
+                $("#hranainfo").css("color", "#f0ad4e");
+                $("#hranaINFO").css("display", "block");
+               
+                break;
+            default:
+                break;
+        }
+}
+function analizaTemp(temp) {
+    if (temp < 36.4) {
+        $("#obavestenjetemp").html("<span class='obvestilo label label-warning fade-in' data-toggle='tooltip' data-placement='top' title='Normalna vrednost: 36.4 - 37.2'>" + temp + ", temperatura je prenizka" + ".</span>");
+    }
+    else if (temp >= 36.4 && temp <= 37.2) {
+        $("#obavestenjetemp").html("<span class='obvestilo label label-success fade-in' data-toggle='tooltip' data-placement='top' title='Normalna vrednost: 36.4 - 37.2'>" + temp + ", temperatura je normalna" + ".</span>");
+
+    }
+    else if (temp > 37.2) {
+        $("#obavestenjetemp").html("<span class='obvestilo label label-warning fade-in' data-toggle='tooltip' data-placement='top' title='Normalna vrednost: 36.4 - 37.2'>" + temp + ", temperatura je visoka" + ".</span>");
+
+    }
+}
+function analizaSist(syst) {
+    if (syst < 90) {
+        $("#obavestenjesys").html("<span class='obvestilo label label-warning fade-in' data-toggle='tooltip' data-placement='top' title='Idealna vrednost: 90 - 120 mm/Hg' >" + syst + ", sistolični tlak je prenizek" + ".</span>");
+    }
+    else if (syst >= 90 && syst <= 120) {
+        $("#obavestenjesys").html("<span class='obvestilo label label-success fade-in' data-toggle='tooltip' data-placement='top' title='Idealna vrednost: 90 - 120 mm/Hg' >" + syst + ", sistolični tlak je normalen" + ".</span>");
+
+    }
+    else if (syst > 120 && syst < 140) {
+        $("#obavestenjesys").html("<span class='obvestilo label label-warning fade-in' data-toggle='tooltip' data-placement='top' title='Idealna vrednost: 90 - 120 mm/Hg' >" + syst + ", sistolični tlak je visok" + ".</span>");
+
+    }
+    else {
+        $("#obavestenjesys").html("<span class='obvestilo label label-danger fade-in' data-toggle='tooltip' data-placement='top' title='Idealna vrednost: 90 - 120 mm/Hg' >" + syst + ", sistolični tlak je previsok" + ".</span>");
+
+    }
+}
+
+//DIASTOLIC
+function analizaDiast(diast) {
+    if (diast < 60) {
+        $("#obavestenjedi").html("<span class='obvestilo label label-warning fade-in' data-toggle='tooltip' data-placement='top' title='Idealna vrednost: 60 - 80 mm/Hg' >" + diast + ", diastolični tlak je prenizek" + ".</span>");
+    }
+    else if (diast >= 60 && diast <= 80) {
+        $("#obavestenjedi").html("<span class='obvestilo label label-success fade-in' data-toggle='tooltip' data-placement='top' title='Idealna vrednost: 60 - 80 mm/Hg' >" + diast + ", diastolični tlak je normalen" + ".</span>");
+    }
+    else if (diast > 80 && diast < 90) {
+        $("#obavestenjedi").html("<span class='obvestilo label label-warning fade-in' data-toggle='tooltip' data-placement='top' title='Idealna vrednost: 60 - 80 mm/Hg' >" + diast + ", diastolični tlak je visok" + ".</span>");
+
+    }
+    else {
+        $("#obavestenjedi").html("<span class='obvestilo label label-danger fade-in' data-toggle='tooltip' data-placement='top' title='Idealna vrednost: 60 - 80 mm/Hg' >" + diast + ", diastolični tlak je previsok" + ".</span>");
+
+    }
+}
 
 
 // TODO: Tukaj implementirate funkcionalnost, ki jo podpira vaša aplikacija
@@ -258,6 +463,22 @@ $(document).ready(function() {
 	  	$("#dodajDiTlak").val(podatki[5]);
 	  
       });
+      $("#podatkiOpacientu").click(function() {
+         $("#obvestiloanaliza").html("");
+         $("#rezultat").html("");
+         $("#rez").html("");
+         $("#rez2").html("");
+         $("#rezzo").html("");
+         $("#EHRid").val($(this).val());
+         $("#pacientIme").val($(this).val());
+        $("#prezime").val($(this).val());
+         $("#pacDR").val("#pacientDR");
+         var pacDura=$("#pacientDUra").val();
+   
+    
+      });
+     
+     
+    
 
-  
 });
