@@ -470,10 +470,6 @@ $(document).ready(function() {
          $("#rez2").html("");
          $("#rezzo").html("");
          $("#EHRid").val($(this).val());
-         $("#pacientIme").val($(this).val());
-        $("#prezime").val($(this).val());
-         $("#pacDR").val("#pacientDR");
-         var pacDura=$("#pacientDUra").val();
    
     
       });

@@ -39,17 +39,19 @@
   </nav>
   <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
   
-<div class="container"><h2><span class="fa fa-heartbeat" aria-hidden="true"></span>Zdravje<small><br>Vsak dan šteje</small><a href="index.html"></a></h2></div>
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#panel-0" data-toggle="tab"><span class="fa fa-child" aria-hidden="true"></span> Pacient</a></li>
-    <li><a href="#panel-3" data-toggle="tab"><span class="fa fa-medkit" aria-hidden="true"></span> Zdravniki</a></li>
-		<li><a href="#panel-4" data-toggle="tab" id="maptab"><span class="fa fa-hospital-o" aria-hidden="true"></span> Drugi viri</a></li>
-		<li><a href="#panel-5" data-toggle="tab" id="maptab"><span class="fa fa-line-chart" aria-hidden="true"></span> Graf</a></li>			
+<div class="container"><h1><span class="fa fa-heartbeat" aria-hidden="true"></span>Zdravje<small><br>Vsak dan šteje</small><a href="index.html"></a></h1></div>
+  <ul style="margin-left: 90px"class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a href="#panel" data-toggle="tab"><span class="fa fa-child" aria-hidden="true"></span> Pacient</a></li>
+    <li><a href="#panel1" data-toggle="tab"><span class="fa fa-medkit" aria-hidden="true"></span> Zdravniki</a></li>
+		<li><a href="#panel2" data-toggle="tab"><span class="fa fa-hospital-o" aria-hidden="true"></span> Drugi viri</a></li>
+		<li><a href="#panel3" data-toggle="tab"><span class="fa fa-line-chart" aria-hidden="true"></span> Graf</a></li>			
 						</ul>
   
   <!-- ZAČETEK: Vsebina aplikacije -->
-   <div style="margin-top: 10px; margin-left: 80px"class="col-lg-10"  id="panel-0">
-              <div class="panel panel-default okvir">
+  <div class="tab-content">
+  <div class="tab-pane fade in active" id="panel">
+   <div style="margin-top: 10px; margin-left: 80px"class="col-lg-10" >
+              <div class="panel panel-default okvir" >
                  <div class="panel-heading">
                      <div class="row">
                          <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
@@ -106,9 +108,9 @@
                       </div>
                            
                </div>
-                           
+                       
          </div>
-       
+     
           <div style="margin-left: 80px" class="col-lg-5">
             <div class="panel panel-default okvir">
         
@@ -277,9 +279,41 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-     </div>
+           </div>
+           <div id="panel1" class="tab-pane fade in">
+            <p style="margin-left:90px; margin-top:20px" >Tukaj lahko pogledate vse zdravnike v Sloveniji, ki so specialisti za kardiologijo, vaskularno medicino, interno medicino ter
+             kardiovaskularno kirurgijo.
+             </p>
+               <br>
+             
+             <iframe style="margin-left: 90px" id="Framename" src="http://zdravniki.org/zdravniki?roles=0&specializations=17" width="1200" height="600"scrolling="auto" >
+              </iframe>
+            
+           </div>
+           <div id="panel2" class="tab-pane fade in">
+             <h2 style="margin-left: 90px">TED govor o srčnem infarktu</h2>
+                <iframe style="margin-left: 500px" id="youtubeVid" width="560" height="350" src="https://www.youtube.com/embed/3_PYnWVoUzM" frameborder="0" allowfullscreen></iframe>
+                <br>
+                <h3 style="margin-left: 90px; margin-top: 20px">TED talks vprašanja za tiste, ki bi želeli izvedeti nekaj več.&nbsp;&nbsp; <i class="fa fa-arrow-right">
+                <a href="https://ed.ted.com/lessons/how-the-heart-actually-pumps-blood-edmond-hui/review_open#question-1"></i>TED kviz</a></h3>
+                <p style="margin-top: 100px"></p>
+                <h2 style="margin-left: 90px" >Izobraževalni članek o infarktu</h2>
+                 <p style=" margin-left: 90px"><iframe id="Framename" src="https://www.zdravje.si/srcni-infarkt" width="1200" height="600" frameborder="0" scrolling="auto" >
+                  </p>
+                  <br />
+                  
+                
+                
+                
+           </div>
+           
+      </div>
+           
+            
+          
+            
+     
+  
       
   
 
