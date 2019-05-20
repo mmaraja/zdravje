@@ -1,7 +1,53 @@
-head,
+html,
 
 .okvir {
     border: 1px solid;
     border-color: coral;
     min-height: 100px !important;
 }
+
+body, h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+}
+body {
+    font-family: 'Cardo', serif;
+}
+h1 {
+    font-family: 'Bevan', serif;
+    font-size: 3.0em;
+}
+h2 {
+    font-family: 'Cardo', serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+p { line-height: 1.4em; margin-bottom: 1.0em; }
+a { color: #821122; }
+#content {
+    width: 925px;
+    margin: 0 auto;
+}
+#filters {
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+}
+#filters a {
+    color: #000;
+    font-size: 12px;
+    padding: 5px;
+    background: #e2e2e2;
+    cursor: pointer;
+    margin-right: 3px;
+}
+#filters a:last-child {
+    margin-right: 0;
+}
+
+
+
+text {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 11px;
+}
+

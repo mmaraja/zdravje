@@ -323,7 +323,7 @@ function analizirajMeritve() {
                          
                         }
                         else {
-                            alert("NI PODATKA O TLAKU.");
+                            alert("NI PODATKA O SIS.TLAKU.");
 
                         }
                        analizaSist(pacientSiTlak);
@@ -348,7 +348,7 @@ function analizirajMeritve() {
                        
                         }
                         else {
-                            alert("NI PODATKA O TLAKU.");
+                            alert("NI PODATKA O DIAST.TLAKU.");
                         }
                        analizaDiast(pacientDiTlak);
 
@@ -436,9 +436,8 @@ function analizaDiast(diast) {
     }
 }
 
-
-// TODO: Tukaj implementirate funkcionalnost, ki jo podpira vaša aplikacija
 $(document).ready(function() {
+  
       $('#dropdown').change(function() {
         
       $("#sporoci").html("");
@@ -473,8 +472,5 @@ $(document).ready(function() {
    
     
       });
-     
-     
-    
 
 });

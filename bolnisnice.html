@@ -2,19 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>eZdravje :: 4. DN :: OIS 2017/2018</title>
+  <title>eZdravje</title>
   <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
   <link href="knjiznice/css/leaflet.css" rel="stylesheet">
   <link href="knjiznice/css/leaflet-routing-machine.css" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    body {padding-top: 70px;}
+  html,body {
+  height: 90%;
+  width: 100%; 
+  padding: 0; 
+  margin-top: 50px; 
+  display: flex;
+}
+    body {
+  height: 100%;
+  width: 100%; 
+  padding: 0; 
+  margin: 0; 
+  display: flex;
+}
+ meni {
+     margin: 10px;
+  }
+
+.info-element {
+  text-align: right;
+  font-style: italic;
+  padding-right: 15px;
+}
+
+table {
+  border-spacing: 0 10px;
+}
+
+.rob {
+  border: 1px solid transparent;
+  border-color: #C30C21;
+  border-radius: 4px;
+}
+meni {
+  padding-top:100px;
+}
+.senca {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+telo {
+  flex: 1;
+  float: right;
+  margin: 10px;
+  overflow: visible;
+  padding-top: 10px;
+  display: block;
+  background-color: lightgray;
+}
   </style>
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
   <script src="knjiznice/js/leaflet.js"></script>
   <script src="knjiznice/js/leaflet-routing-machine.js"></script>
   <script src="knjiznice/js/distance-util.js"></script>
-  <script src="knjiznice/js/koda.js"></script>
+  
+  <script src="knjiznice/js/bolnice.js"></script>
 </head>
 <body>
 
@@ -40,15 +89,54 @@
     </div>
   </nav>
   <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
-
+  
   <!-- ZAČETEK: Prikaz bližnjih bolnišnic -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <p class="lead"><strong>TO-DO</strong>: Na tem mestu implementirajte prikaz bližnjih bolnišnic.</p>
-      </div>
-    </div>
-  </div>
+  
+   
+    
+    <!-- MENI -->
+    <meni>
+      <table>
+        <tr>
+          <td class="info-element ">ZDRAVSTVENE USTANOVE V BLIŽINI:</td>
+          <td>
+          
+            <input class="rob senca" type="button" value="Dodaj ustanove" id="dodajBolnice"> 
+          </td>
+        </tr>
+        <tr>
+          <td class="info-element">Najdeni rezultati:</td>
+          
+          <td><label id="bolnice_rez">0</label> ustanov
+          </td>
+        </tr>
+        
+        <tr>
+          <td></td>
+          <td>
+            <button class="rob senca" id="izbrisiRezultate" >
+              Odstrani vse interesne točke</button>
+          </td>
+        </tr>
+        
+        <tr>
+          <td></td>
+          <td><input id="idRadij" type="checkbox" name="radij" value="radij">
+            Prikaz radija<br></td>
+        </tr>
+        
+      </table>
+    </meni>
+
+    <!-- TELO -->
+    <telo class="rob senca" id="mapa_id" ></telo>
+    
+
+
+  
+    
+
+   
   <!-- KONEC: Prikaz bližnjih bolnišnic -->
 
 </body>

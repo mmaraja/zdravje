@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>eZdravje :: 4. DN :: OIS 2017/2018</title>
+  <title>eZdravje</title>
   <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
   <link href="knjiznice/css/stil.css" rel="stylesheet" >
   <style>
@@ -11,7 +11,10 @@
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
   <script src="knjiznice/js/koda.js"></script>
+ 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
 </head>
 <body>
 
@@ -44,18 +47,17 @@
     <li class="active"><a href="#panel" data-toggle="tab"><span class="fa fa-child" aria-hidden="true"></span> Pacient</a></li>
     <li><a href="#panel1" data-toggle="tab"><span class="fa fa-medkit" aria-hidden="true"></span> Zdravniki</a></li>
 		<li><a href="#panel2" data-toggle="tab"><span class="fa fa-hospital-o" aria-hidden="true"></span> Drugi viri</a></li>
-		<li><a href="#panel3" data-toggle="tab"><span class="fa fa-line-chart" aria-hidden="true"></span> Graf</a></li>			
-						</ul>
+		<li><a href="#panell" data-toggle="tab"><span class="fa fa-line-chart" aria-hidden="true"></span> Graf</a></li></ul>
   
   <!-- ZAČETEK: Vsebina aplikacije -->
   <div class="tab-content">
   <div class="tab-pane fade in active" id="panel">
    <div style="margin-top: 10px; margin-left: 80px"class="col-lg-10" >
               <div class="panel panel-default okvir" >
-                 <div class="panel-heading">
+                 <div style="background-color: #8B0000"class="panel-heading">
                      <div class="row">
                          <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                          <h4>Kreiraj EHR zapis</h4>
+                          <h4 style="color: white">Kreiraj EHR zapis</h4>
                           </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                               <select id="dropdown" class="form-control">
@@ -103,7 +105,7 @@
 					                    Vegan
 					              </label>
 					              </div>
-                         <button style="margin-bottom: 10px" onclick="novEHR()" class="btn btn-primary" type="button">Dodaj EHR pacienta</button>
+                         <button style="background-color: black" style="margin-bottom: 10px" onclick="novEHR()" class="btn btn-primary" type="button">Dodaj EHR pacienta</button>
                             <span id="sporoci"></span>
                       </div>
                            
@@ -114,10 +116,10 @@
           <div style="margin-left: 80px" class="col-lg-5">
             <div class="panel panel-default okvir">
         
-             <div class="panel-heading">
+             <div style="background-color: #8B0000" class="panel-heading">
                      <div class="row">
                          <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
-                          <h4>Dodaj meritve vitalnih znakov</h4>
+                          <h4 style="color: white">Dodaj meritve vitalnih znakov</h4>
                          </div>
                           <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                           <select id="dodajMeritev" class="form-control">
@@ -182,7 +184,7 @@
             </div>
 
             
-            <button style="margin-left: 30px; margin-bottom: 10px; margin-top: 10px" onclick="dodajMeritve()" class="btn btn-primary" type="button">Dodaj meritev</button>
+            <button style="margin-left: 30px; margin-bottom: 10px; margin-top: 10px;background-color: black" onclick="dodajMeritve()" class="btn btn-primary" type="button">Dodaj meritev</button>
             <span id="meritveVitalSpor"></span>
 
           </div>
@@ -193,11 +195,11 @@
 
         <div class="panel panel-default okvir">
 
-          <div class="panel-heading">
+          <div style="background-color: #8B0000" class="panel-heading">
             <div class="row">
 
               <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8">
-                <h4>Podatki o pacientu</h4>
+                <h4 style="color: white">Podatki o pacientu</h4>
               </div>
 
               <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
@@ -218,7 +220,7 @@
                 <div class="form-group">
                   <input id="EHRid" type="text" class="form-control" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
                 </div>
-                <button onclick="analizirajMeritve()" class="btn btn-primary" type="button">Preveri vitalne znake</button>
+                <button style="background-color: black"onclick="analizirajMeritve()" class="btn btn-primary" type="button">Preveri vitalne znake</button>
               
               </div>
             </div>
@@ -281,8 +283,8 @@
             </div>
            </div>
            <div id="panel1" class="tab-pane fade in">
-            <p style="margin-left:90px; margin-top:20px" >Tukaj lahko pogledate vse zdravnike v Sloveniji, ki so specialisti za kardiologijo, vaskularno medicino, interno medicino ter
-             kardiovaskularno kirurgijo.
+            <h4 style="margin-left:90px; margin-top:20px" >Tukaj lahko ogledate vse zdravnike v Sloveniji, ki so specialisti za kardiologijo, vaskularno medicino, interno medicino ter
+             kardiovaskularno kirurgijo.</h4>
              </p>
                <br>
              
@@ -291,22 +293,22 @@
             
            </div>
            <div id="panel2" class="tab-pane fade in">
-             <h2 style="margin-left: 90px">TED govor o srčnem infarktu</h2>
+             <h2 style="margin-left: 90px; margin-top: 20px">TED govor o srčnem infarktu</h2>
                 <iframe style="margin-left: 500px" id="youtubeVid" width="560" height="350" src="https://www.youtube.com/embed/3_PYnWVoUzM" frameborder="0" allowfullscreen></iframe>
                 <br>
-                <h3 style="margin-left: 90px; margin-top: 20px">TED talks vprašanja za tiste, ki bi želeli izvedeti nekaj več.&nbsp;&nbsp; <i class="fa fa-arrow-right">
-                <a href="https://ed.ted.com/lessons/how-the-heart-actually-pumps-blood-edmond-hui/review_open#question-1"></i>TED kviz</a></h3>
+                <h3 style="margin-left: 90px; margin-top: 20px">TED talks vprašanja za tiste, ki bi želeli izvedeti nekaj več.&nbsp;&nbsp; <i class="fa fa-arrow-right"></i>
+                <a href="https://ed.ted.com/lessons/how-the-heart-actually-pumps-blood-edmond-hui/review_open#question-1">TED kviz</a></h3>
                 <p style="margin-top: 100px"></p>
                 <h2 style="margin-left: 90px" >Izobraževalni članek o infarktu</h2>
                  <p style=" margin-left: 90px"><iframe id="Framename" src="https://www.zdravje.si/srcni-infarkt" width="1200" height="600" frameborder="0" scrolling="auto" >
                   </p>
-                  <br />
                   
-                
-                
-                
+                   
            </div>
-           
+           <div id="panell" class="tab-pane fade in">
+               <img src="http://www.ehnheart.org/images/gallery/2.%2049m%20people.jpg">
+               </div>
+   
       </div>
            
             
