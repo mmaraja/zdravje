@@ -13,7 +13,11 @@
   <script src="knjiznice/js/koda.js"></script>
  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+ <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+</head>
+
+ <script src="knjiznice/js/graf.js"></script>
 
 </head>
 <body>
@@ -42,12 +46,12 @@
   </nav>
   <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
   
-<div class="container"><h1><span class="fa fa-heartbeat" aria-hidden="true"></span>Zdravje<small><br>Vsak dan šteje</small><a href="index.html"></a></h1></div>
+<div style="margin-top: 20px" class="container"><h1><span class="fa fa-heartbeat" aria-hidden="true"></span>Zdravo življenje<img align="right" width="300px"src="https://www.higherdreams.net/wp-content/uploads/2018/01/heartbeat-clipart-1.jpg" ><a href="index.html"></a></h1></div>
   <ul style="margin-left: 90px"class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#panel" data-toggle="tab"><span class="fa fa-child" aria-hidden="true"></span> Pacient</a></li>
     <li><a href="#panel1" data-toggle="tab"><span class="fa fa-medkit" aria-hidden="true"></span> Zdravniki</a></li>
 		<li><a href="#panel2" data-toggle="tab"><span class="fa fa-hospital-o" aria-hidden="true"></span> Drugi viri</a></li>
-		<li><a href="#panell" data-toggle="tab"><span class="fa fa-line-chart" aria-hidden="true"></span> Graf</a></li></ul>
+		<li><a href="#panel3" data-toggle="tab"><span class="fa fa-line-chart" aria-hidden="true"></span> Graf</a></li></ul>
   
   <!-- ZAČETEK: Vsebina aplikacije -->
   <div class="tab-content">
@@ -108,7 +112,7 @@
                          <button style="background-color: black" style="margin-bottom: 10px" onclick="novEHR()" class="btn btn-primary" type="button">Dodaj EHR pacienta</button>
                             <span id="sporoci"></span>
                       </div>
-                           
+                         
                </div>
                        
          </div>
@@ -294,31 +298,23 @@
            </div>
            <div id="panel2" class="tab-pane fade in">
              <h2 style="margin-left: 90px; margin-top: 20px">TED govor o srčnem infarktu</h2>
-                <iframe style="margin-left: 500px" id="youtubeVid" width="560" height="350" src="https://www.youtube.com/embed/3_PYnWVoUzM" frameborder="0" allowfullscreen></iframe>
+                <iframe style="margin-left: 500px" id="youtubeVid" width="560" height="350" src="https://www.youtube.com/embed/3_PYnWVoUzM" frameborder="0" allowfullscreen>
                 <br>
                 <h3 style="margin-left: 90px; margin-top: 20px">TED talks vprašanja za tiste, ki bi želeli izvedeti nekaj več.&nbsp;&nbsp; <i class="fa fa-arrow-right"></i>
                 <a href="https://ed.ted.com/lessons/how-the-heart-actually-pumps-blood-edmond-hui/review_open#question-1">TED kviz</a></h3>
                 <p style="margin-top: 100px"></p>
                 <h2 style="margin-left: 90px" >Izobraževalni članek o infarktu</h2>
-                 <p style=" margin-left: 90px"><iframe id="Framename" src="https://www.zdravje.si/srcni-infarkt" width="1200" height="600" frameborder="0" scrolling="auto" >
+                 <p style=" margin-left: 90px"><iframe id="Framename" src="https://www.zdravje.si/srcni-infarkt" width="1200" height="600" frameborder="0" scrolling="auto" ></iframe>
                   </p>
-                  
-                   
            </div>
-           <div id="panell" class="tab-pane fade in">
-               <img src="http://www.ehnheart.org/images/gallery/2.%2049m%20people.jpg">
-               </div>
-   
-      </div>
-           
-            
           
-            
-     
-  
-      
-  
-
+           <div class="tab-pane fade in" id="panel3">
+           <div id="chart-container"></div>
+         
+        
+           </div>
+         
+      </div>
 
   <!-- KONEC: Vsebina aplikacije -->
 
